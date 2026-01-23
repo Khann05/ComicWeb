@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Komik Sekolah — Reader</title>
+  <meta name="description" content="Komik tugas sekolah — tampilan profesional dengan animasi dan reader modern." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Animated background decor -->
+  <div class="bg-decor" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="grid"></div>
+    <div class="sparkles"></div>
+  </div>
+
+  <!-- Floating marquee text decoration -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__inner">
+      <span>✦ KOMIK ✦</span>
+      <span>✦ IDPBL ✦</span>
+      <span>✦ BUSHIDO SPIRIT ✦</span>
+      <span>✦ KOMIK ✦</span>
+      <span>✦ IDPBL ✦</span>
+      <span>✦ BUSHIDO SPIRIT ✦</span>
+      <span>✦ KOMIK ✦</span>
+      <span>✦ IDPBL ✦</span>
+      <span>✦ BUSHIDO SPIRIT ✦</span>
+      <span>✦ KOMIK ✦</span>
+      <span>✦ IDPBL ✦</span>
+      <span>✦ BUSHIDO SPIRIT ✦</span>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <span class="logo__dot"></span>
+        <span class="logo__dot"></span>
+        <span class="logo__dot"></span>
+      </div>
+      <div class="brand__text">
+        <div class="brand__title">Bushido Spirit</div>
+        <div class="brand__sub" id="subtitle">Komik Bushido Spirit</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn ghost" id="btnHelp" title="Bantuan (H)">Help</button>
+      <button class="btn ghost" id="btnThumbs" title="Buka daftar halaman (T)">Pages</button>
+      <button class="btn" id="btnStart" title="Mulai baca (auto fullscreen)">Start Reading</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="reader">
+      <div class="progress">
+        <div class="progress__bar" id="progressBar"></div>
+      </div>
+
+      <div class="reader__frame" id="readerFrame">
+        <button class="fsExit" id="btnExitFs" type="button" aria-label="Keluar Fullscreen" title="Keluar Fullscreen (Esc)">
+         ✕ Exit
+        </button>
+
+        <!-- Loading overlay -->
+        <div class="loading" id="loading">
+          <div class="spinner"></div>
+          <div class="loading__text">Loading pages…</div>
+        </div>
+
+        <!-- Scroll ONLY -->
+        <div class="scrollList on" id="scrollList" aria-label="Comic scroll list"></div>
+
+        <!-- Bottom HUD (scroll info) -->
+        <div class="hud">
+          <div class="hud__left">
+            <span class="tag" id="modeTag">SCROLL</span>
+            <span class="dot"></span>
+            <span class="mini" id="miniInfo">Scroll untuk membaca</span>
+          </div>
+          <div class="hud__right">
+            <span class="mini" id="miniCount">1 / 6</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Thumbnails drawer -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__backdrop" id="drawerBackdrop"></div>
+    <div class="drawer__panel">
+      <div class="drawer__header">
+        <div>
+          <div class="drawer__title">Pages</div>
+          <div class="drawer__sub">Klik untuk lompat halaman</div>
+        </div>
+        <button class="iconbtn" id="drawerClose" title="Close">✕</button>
+      </div>
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+  </div>
+
+  <!-- Help modal -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal__backdrop" id="modalBackdrop"></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Help dialog">
+      <div class="modal__header">
+        <div class="modal__title">Help & Controls</div>
+        <button class="iconbtn" id="modalClose" title="Close">✕</button>
+      </div>
+
+      <div class="modal__content">
+        <div class="helpgrid">
+          <div class="helpbox">
+            <div class="helpbox__title">Navigasi</div>
+            <ul>
+              <li>Scroll biasa untuk membaca.</li>
+              <li>Tekan <b>T</b> untuk buka daftar halaman.</li>
+            </ul>
+          </div>
+          <div class="helpbox">
+            <div class="helpbox__title">Zoom</div>
+            <ul>
+              <li><b>+</b> zoom in, <b>-</b> zoom out.</li>
+              <li><b>0</b> reset ke 100%.</li>
+            </ul>
+          </div>
+          <div class="helpbox">
+            <div class="helpbox__title">Fullscreen</div>
+            <ul>
+              <li>Start Reading auto fullscreen.</li>
+              <li>Tekan <b>F</b> untuk toggle fullscreen.</li>
+              <li>Esc untuk keluar.</li>
+            </ul>
+          </div>
+          <div class="helpbox">
+            <div class="helpbox__title">Auto Save</div>
+            <ul>
+              <li>Halaman terakhir disimpan otomatis.</li>
+              <li>Start Reading lanjut dari terakhir.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="note">
+          Tip: Pakai gambar resolusi tinggi supaya hasilnya tajam dan profesional.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
