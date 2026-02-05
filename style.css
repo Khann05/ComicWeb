@@ -215,6 +215,7 @@ body{
   transition: width .35s var(--ease);
 }
 
+/* Reader frame (fitur sama) */
 .reader__frame{
   position: relative;
   width: 100%;
@@ -254,36 +255,31 @@ body{
 
 /* =========================
    Scroll list — SEAMLESS
-   (gambar nyambung tanpa gap)
    ========================= */
 .scrollList{
   position:absolute;
   inset: 0 0 var(--hudH) 0;
-  padding: 0;                 /* penting: hilangin padding */
+  padding: 0;
   overflow:auto;
   scroll-behavior: smooth;
   background: transparent;
 }
 
-/* item jadi strip biasa (tanpa card look) */
 .scrollItem{
   width: 100%;
   max-width: 980px;
-  margin: 0 auto;             /* tanpa jarak bawah */
-  border-radius: 0;           /* tanpa radius */
+  margin: 0 auto;
+  border-radius: 0;
   overflow: hidden;
-  border: 0;                  /* tanpa border */
+  border: 0;
   background: transparent;
-  box-shadow: none;           /* tanpa shadow */
+  box-shadow: none;
   transform: none;
   opacity: 1;
   transition: none;
 }
-
-/* kalau JS kamu masih nambah class show, tetap aman */
 .scrollItem.show{ transform:none; opacity:1; }
 
-/* gambar nempel */
 .scrollItem img{
   width:100%;
   display:block;
@@ -291,7 +287,7 @@ body{
   transform-origin: top center;
 }
 
-/* HUD (bar bawah, tidak nutup konten) */
+/* HUD */
 .hud{
   position: absolute;
   left: 0;
@@ -477,7 +473,7 @@ body{
   transition: none !important;
 }
 
-/* Fullscreen Exit Button (muncul cuma saat fullscreen) */
+/* Fullscreen Exit Button */
 .fsExit{
   position: absolute;
   top: 14px;
@@ -492,56 +488,36 @@ body{
   cursor: pointer;
   backdrop-filter: blur(12px);
   box-shadow: 0 10px 28px rgba(15,23,42,.14);
-  display: none; /* default: hidden */
+  display: none;
   transition: transform .18s var(--ease), box-shadow .18s var(--ease);
 }
 .fsExit:hover{ transform: translateY(-1px); box-shadow: var(--shadow2); }
-
-/* muncul saat fullscreen */
 .reader__frame.is-fs .fsExit{ display: inline-flex; align-items:center; gap:8px; }
 
 /* =========================================================
-   FORCE SEAMLESS (PAKSA NYATU TANPA NGUBAH FITUR LAIN)
-   Taruh di paling bawah biar override semua style lama.
+   FINAL FIX: PAKSA NYATU 100% (TANPA UBAH FITUR LAIN)
    ========================================================= */
-.scrollList{
-  padding: 0 !important;
-  margin: 0 !important;
-}
 
-.scrollItem{
-  margin: 0 !important;
-  padding: 0 !important;
+/* Hilangin “card frame” yang bikin terlihat kepisah */
+.reader__frame{
   border: 0 !important;
   border-radius: 0 !important;
-  box-shadow: none !important;
   background: transparent !important;
-  transform: none !important;
-  transition: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
 }
 
-/* Ini yang paling sering bikin “garis putih” */
-.scrollItem img{
-  display: block !important;
-  width: 100% !important;
-  height: auto !important;
+/* Full lebar, no center gap */
+.scrollItem{
+  max-width: none !important;
   margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
+}
+
+/* Anti garis tipis antar gambar */
+.scrollItem img{
+  display:block !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
   vertical-align: top !important;
 }
-
-/* Kalau masih ada “card frame” yang keliatan di sela-sela, ini yang nge-fix */
-.reader{
-  gap: 0 !important;
-}
-.progress{
-  margin: 0 !important;
-}
-.layout{
-  padding: 18px !important; /* FITUR LAIN TETAP, tapi gap gambar tetap 0 karena scrollList full */
-}
-
-/* Optional: kalau kamu mau benar-benar full lebar (tanpa sisi abu), aktifkan ini:
-.scrollItem{ max-width: none !important; }
-*/
