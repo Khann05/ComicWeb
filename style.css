@@ -252,32 +252,42 @@ body{
 @keyframes spin{ to { transform: rotate(360deg); } }
 .loading__text{ font-weight: 900; color: rgba(15,23,42,.72); letter-spacing: -0.01em; }
 
-/* Scroll list */
+/* =========================
+   Scroll list — SEAMLESS
+   (gambar nyambung tanpa gap)
+   ========================= */
 .scrollList{
   position:absolute;
   inset: 0 0 var(--hudH) 0;
-  padding: 18px;
+  padding: 0;                 /* penting: hilangin padding */
   overflow:auto;
   scroll-behavior: smooth;
+  background: transparent;
 }
 
+/* item jadi strip biasa (tanpa card look) */
 .scrollItem{
-  width: min(980px, 96%);
-  margin: 0 auto 18px;
-  border-radius: 22px;
-  overflow:hidden;
-  border: 1px solid rgba(15,23,42,.10);
-  background: rgba(255,255,255,.8);
-  box-shadow: 0 16px 40px rgba(15,23,42,.10);
-  transform: translateY(10px);
-  opacity: 0;
-  transition: transform .6s var(--ease), opacity .6s var(--ease);
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;             /* tanpa jarak bawah */
+  border-radius: 0;           /* tanpa radius */
+  overflow: hidden;
+  border: 0;                  /* tanpa border */
+  background: transparent;
+  box-shadow: none;           /* tanpa shadow */
+  transform: none;
+  opacity: 1;
+  transition: none;
 }
-.scrollItem.show{ transform: translateY(0); opacity: 1; }
+
+/* kalau JS kamu masih nambah class show, tetap aman */
+.scrollItem.show{ transform:none; opacity:1; }
+
+/* gambar nempel */
 .scrollItem img{
   width:100%;
   display:block;
-  height: auto;
+  height:auto;
   transform-origin: top center;
 }
 
@@ -466,6 +476,7 @@ body{
   animation: none !important;
   transition: none !important;
 }
+
 /* Fullscreen Exit Button (muncul cuma saat fullscreen) */
 .fsExit{
   position: absolute;
