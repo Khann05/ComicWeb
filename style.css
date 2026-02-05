@@ -203,3 +203,41 @@ body{
   display:none;
 }
 .reader__frame.is-fs .fsExit{display:block}
+/* ===== FORCE SEAMLESS (PAKSA NYATU) ===== */
+.layout{ padding:0 !important; margin:0 !important; max-width:none !important; }
+.reader{ gap:0 !important; }
+.progress{ margin:0 !important; border:0 !important; }
+.progress__bar{ border-radius:0 !important; }
+
+.reader__frame{
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+}
+
+.scrollList{
+  padding:0 !important;
+  margin:0 !important;
+  background:transparent !important;
+}
+
+.scrollItem{
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+  max-width:none !important;
+}
+
+.scrollItem img{
+  display:block !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  vertical-align:top !important;
+}
